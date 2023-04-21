@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:world_news/model/news_model.dart';
-import 'package:world_news/common/fetch_http_rambler.dart';
+//import 'package:world_news/common/fetch_http_rambler.dart';
 
 class FullNews extends StatefulWidget {
   final urlNews;
