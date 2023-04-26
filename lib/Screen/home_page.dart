@@ -7,13 +7,15 @@ import 'package:world_news/Screen/fullNews.dart';
 
 class Home_Page{
   final List _ramblerlist = [];
+  var link_page;
+
+  Home_Page({this.link_page});
 
   _getNewFromRambler() async {
     var client = http.Client();
     var response =
-    await client.get(Uri.parse('http://www.ria.ru/export/rss2/index.xml'));
+    await client.get(Uri.parse(link_page));
     var chanel = RssFeed.parse(response.body);
-    print(chanel.items == null);
     chanel.items?.forEach((element) {
       _ramblerlist.add(element);
     });
@@ -45,8 +47,9 @@ class Home_Page{
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.0, vertical: 10.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${_ramblerlist[index].title}',
+                            Text('${_ramblerlist[index].title.trim()}',
                                 style: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold)),

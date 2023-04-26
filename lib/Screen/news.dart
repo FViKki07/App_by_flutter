@@ -19,9 +19,10 @@ class News extends StatefulWidget {
 
 class NewsFull extends State<News> {
   var _indexPage = 0;
+  final List<String> _name_page = ["Главная","Категории","Избранное"];
 
   List<Widget> _pages = <Widget>[
-    Home_Page().returnHomePage(),
+    Home_Page(link_page: 'https://habr.com/ru/rss/all/all/?fl=ru').returnHomePage(),
     Categories().returnCategories(),
     Scaffold(
       body: Center(child: Text("Избранное")),
@@ -39,7 +40,7 @@ class NewsFull extends State<News> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Главная",
+          title: Text(_name_page.elementAt(_indexPage),
               style: TextStyle(color: Colors.white, fontSize: 30)),
           centerTitle: true,
           backgroundColor: Colors.blueAccent,

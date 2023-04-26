@@ -56,13 +56,10 @@ class _ReadFullNews extends State<FullNews> {
     var client = http.Client();
     var response = await client.get(Uri.parse(widget.urlNews));
     var _news = parse(response.body);
-    _newModel.title = _news.getElementsByClassName('article__header')[0].children[0]!.text;
-    var body = _news.getElementsByClassName('article__text');//[0].children;//getElementsByClassName('article__text')[0]!.text;
-    String text = "";
-    for( int i=0; i<body.length;i++){
-      text += body[i]!.text + "\n\n";
-    }
-    _newModel.body = text;
+    _newModel.title = _news.getElementsByClassName('tm-title tm-title_h1')[0].text;
+    //print(_news.getElementsByClassName('tm-title tm-title_h1')[0]!.text);
+    var body =_news.getElementById("post-content-body")!.children[0].text;
+    _newModel.body = body;
     _newModel.news_url = widget.urlNews;
     
     return _newModel;
