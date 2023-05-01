@@ -6,6 +6,7 @@ import 'package:world_news/model/categories_model.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:world_news/Screen/home_page.dart';
+import 'package:world_news/Screen/list_of_categories.dart';
 
 class Categories {
   var list_cat = [];
@@ -137,7 +138,8 @@ class Categories {
                                     onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>  Home_Page(link_page: '${list_cat[index].link}').returnHomePage())),
+                                          builder: (context) =>  List_of_categories(title_categories: '${list_cat[index].title}', url_categories: '${list_cat[index].link}'))),
+                                              //Home_Page(link_page: '${list_cat[index].link}').returnHomePage())),
                                     label: Text('Перейти'),
                                     icon: Icon(Icons.arrow_forward),
                                   )
