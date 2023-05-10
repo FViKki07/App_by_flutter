@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class News_model {
   String? title;
@@ -15,7 +14,7 @@ class News_model {
 
   News_model.fromJson(Map<String, dynamic> json):
       title = json['title'],
-      news_url = json['new_url'],
+      news_url = json['news_url'],
       body = json['body'];
 
 }

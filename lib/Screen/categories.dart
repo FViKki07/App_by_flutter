@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:world_news/model/categories_model.dart';
-import 'dart:convert';
-import 'dart:io';
-import 'package:world_news/Screen/home_page.dart';
 import 'package:world_news/Screen/list_of_categories.dart';
 
 class Categories {
@@ -25,7 +22,7 @@ class Categories {
     //print(_cat[0].getElementsByClassName("tm-hubs-list__hub-rating")[0].text);
     //print(_cat[0].getElementsByClassName("tm-hubs-list__hub-subscribers")[0].text);
     RegExp regex2 = new RegExp('href="https://habr.com/ru/rss/.*?" type="application/rss\\+xml"');
-    var match = regex.firstMatch(
+   /* var match = regex.firstMatch(
         _cat[1].getElementsByClassName("tm-hub__userpic-link")[0].outerHtml);
     var link_cat = match?.group(0);
     link_cat = link_cat!.substring(6, link_cat.length - 1);
@@ -37,7 +34,7 @@ class Categories {
     var cc = match2?.group(0);
     var rss_link = cc!.substring(6,cc.length - 28);
     //print(cc);
-   // print(rss_link);
+    print(rss_link);*/
 
     for (int i = 0; i < _cat.length; i++) {
       var newModel = Categoria();
@@ -100,6 +97,12 @@ class Categories {
                                       fontWeight: FontWeight.bold)),
                               SizedBox(
                                 height: 20.0,
+                              ),
+                              Text('${list_cat[index].description}',
+                                  style: TextStyle(
+                                      fontSize: 13.0)),
+                              SizedBox(
+                                height: 13.0,
                               ),
                               Row(
                                 mainAxisAlignment:

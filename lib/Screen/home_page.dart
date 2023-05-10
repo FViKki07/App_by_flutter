@@ -13,8 +13,7 @@ class Home_Page{
 
   _getNewFromRambler() async {
     var client = http.Client();
-    var response =
-    await client.get(Uri.parse(link_page));
+    var response = await client.get(Uri.parse(link_page));
     var chanel = RssFeed.parse(response.body);
     chanel.items?.forEach((element) {
       _ramblerlist.add(element);
@@ -23,7 +22,7 @@ class Home_Page{
     return _ramblerlist;
   }
 
-   Widget returnHomePage(){
+  Widget returnHomePage() {
     return FutureBuilder(
       future: _getNewFromRambler(),
       builder: (context, AsyncSnapshot snapshot) {
@@ -49,16 +48,17 @@ class Home_Page{
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${_ramblerlist[index].title.trim()}',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold)),
+                           Text(
+                                      '${_ramblerlist[index].title.trim()}',
+                                      style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold),
+                                      softWrap: true),
                             SizedBox(
                               height: 20.0,
                             ),
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(DateFormat('dd.mm.yyyy kk.mm').format(
                                     DateTime.parse(
@@ -70,7 +70,7 @@ class Home_Page{
                                       MaterialPageRoute(
                                           builder: (context) => FullNews(
                                               urlNews:
-                                              '${_ramblerlist[index].link}'))),
+                                                  '${_ramblerlist[index].link}'))),
                                   label: Text('Читать'),
                                   icon: Icon(Icons.arrow_forward),
                                 )
@@ -85,5 +85,4 @@ class Home_Page{
       },
     );
   }
-
 }

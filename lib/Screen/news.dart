@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:world_news/Screen/fullNews.dart';
 import 'package:world_news/Screen/categories.dart';
 import 'package:world_news/Screen/home_page.dart';
+import 'package:world_news/Screen/list_of_favorits.dart';
 
 class News extends StatefulWidget {
   const News({super.key});
@@ -24,9 +25,7 @@ class NewsFull extends State<News> {
   List<Widget> _pages = <Widget>[
     Home_Page(link_page: 'https://habr.com/ru/rss/all/all/?fl=ru').returnHomePage(),
     Categories().returnCategories(),
-    Scaffold(
-      body: Center(child: Text("Избранное")),
-    )
+    List_of_Favorits().getWidgetWithList()
   ];
 
   void _choicePage(int page) {
