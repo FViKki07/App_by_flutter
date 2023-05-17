@@ -24,7 +24,7 @@ class _ReadCateg extends State<List_of_categories> {
         title: Text('${widget.title_categories}'),
         centerTitle: true,
       ),
-        body: Home_Page(link_page: '${widget.url_categories}').returnHomePage(),
+        body: Home_Page(link_page: '${widget.url_categories}'),
     );
   }
 }

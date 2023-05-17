@@ -22,10 +22,15 @@ class NewsFull extends State<News> {
   var _indexPage = 0;
   final List<String> _name_page = ["Главная","Категории","Избранное"];
 
-  List<Widget> _pages = <Widget>[
+  /*List<Widget> _pages = <Widget>[
     Home_Page(link_page: 'https://habr.com/ru/rss/all/all/?fl=ru').returnHomePage(),
     Categories().returnCategories(),
     List_of_Favorits().getWidgetWithList()
+  ];*/
+  final _pages = <Widget>[
+     Home_Page(link_page: 'https://habr.com/ru/rss/all/all/?fl=ru'),
+    Categories(),
+    List_of_Favorits()
   ];
 
   void _choicePage(int page) {

@@ -5,7 +5,7 @@ import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:world_news/model/news_model.dart';
-//import 'package:world_news/common/fetch_http_rambler.dart';
+import 'package:world_news/Screen/list_of_favorits.dart';
 
 class FullNews extends StatefulWidget {
   final urlNews;
@@ -21,6 +21,8 @@ class _ReadFullNews extends State<FullNews> {
   String? _keyNews;
   Color _colorFavorite = Colors.white;
   int i = 0;
+  var lf ="ListFavorits";
+
 
   void _addFavorite() async {
     var hubs = await SharedPreferences.getInstance();
@@ -32,6 +34,9 @@ class _ReadFullNews extends State<FullNews> {
     }
 
     if(i == 2 && _colorFavorite == Colors.yellow) {
+      var list_info =  hubs.getStringList(lf);
+      list_info!.remove(_keyNews!);
+      hubs.setStringList(lf, list_info);
       await hubs.remove(_keyNews!);
       _colorFavorite = Colors.white;
       i = 0;
@@ -45,6 +50,16 @@ class _ReadFullNews extends State<FullNews> {
 
   Future _setFavorits() async {
     var hubs = await SharedPreferences.getInstance();
+    var list_info =  hubs.getStringList(lf);
+    if(list_info == null) {
+      var listFavorits = [_keyNews!];
+      hubs.setStringList(lf, listFavorits);
+    }else{
+      var listFavorits = hubs.getStringList(lf);
+      if(!listFavorits!.contains(_keyNews!))
+        listFavorits.add(_keyNews!);
+      hubs.setStringList(lf, listFavorits);
+    }
     hubs.setString(_keyNews!, json.encode(_newModel));
   }
 

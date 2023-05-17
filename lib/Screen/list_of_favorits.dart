@@ -7,15 +7,27 @@ import 'package:world_news/model/news_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:world_news/Screen/fullNews.dart';
 
-class List_of_Favorits {
+class List_of_Favorits extends StatefulWidget {
+  const List_of_Favorits({super.key});
+
+  @override
+  State<List_of_Favorits> createState() => ReadList_of_Favorits();
+}
+
+class ReadList_of_Favorits extends State<List_of_Favorits> {
   final List lst_F = [];
+  var lf ="ListFavorits";
+
 
   _getListOfFavorits() async {
     var hubs = await SharedPreferences.getInstance();
-    final keys = hubs.getKeys();
 
-    for( int i=0;i<keys.length;i++){
-      var string_of_hubs = hubs.getString(keys.elementAt(i));
+    var keys = hubs.getStringList(lf);
+    if(keys == null)
+      keys =[];
+
+    for( int i=0;i<keys!.length;i++){
+      var string_of_hubs = hubs.getString(keys!.elementAt(i));
       if(string_of_hubs != null) {
         var model_hubs = News_model.fromJson(json.decode(string_of_hubs));
         lst_F.add(model_hubs);
@@ -24,7 +36,8 @@ class List_of_Favorits {
     return lst_F;
   }
 
-  Widget getWidgetWithList() {
+  @override
+  Widget build(BuildContext context) {
     return FutureBuilder(
         future: _getListOfFavorits(),
         builder: (context, AsyncSnapshot snapshot) {

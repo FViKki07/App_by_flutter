@@ -5,15 +5,21 @@ import 'package:webfeed/webfeed.dart';
 import 'package:intl/intl.dart';
 import 'package:world_news/Screen/fullNews.dart';
 
-class Home_Page{
-  final List _ramblerlist = [];
-  var link_page;
+class Home_Page extends StatefulWidget {
+  final link_page;
 
-  Home_Page({this.link_page});
+  Home_Page({@required this.link_page});
+
+  @override
+  State<Home_Page> createState() => ReadHome_Page();
+}
+
+class ReadHome_Page extends State<Home_Page> {
+  final List _ramblerlist = [];
 
   _getNewFromRambler() async {
     var client = http.Client();
-    var response = await client.get(Uri.parse(link_page));
+    var response = await client.get(Uri.parse(widget.link_page));
     var chanel = RssFeed.parse(response.body);
     chanel.items?.forEach((element) {
       _ramblerlist.add(element);
@@ -22,7 +28,8 @@ class Home_Page{
     return _ramblerlist;
   }
 
-  Widget returnHomePage() {
+  @override
+  Widget build(BuildContext context) {
     return FutureBuilder(
       future: _getNewFromRambler(),
       builder: (context, AsyncSnapshot snapshot) {
@@ -60,7 +67,7 @@ class Home_Page{
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(DateFormat('dd.mm.yyyy kk.mm').format(
+                                Text(DateFormat('dd.MM.yyyy kk.mm').format(
                                     DateTime.parse(
                                         '${_ramblerlist[index].pubDate}'))),
                                 FloatingActionButton.extended(
