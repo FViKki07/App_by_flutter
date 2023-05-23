@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
     return  Scaffold(
         appBar: AppBar(
           title:
-          const Text("Мировые новости", style: TextStyle(fontSize: 30, color: Colors.black)),
+          const Text("Хабр", style: TextStyle(fontSize: 30, color: Colors.black)),
           centerTitle: true,
           flexibleSpace: Container(
             decoration: const BoxDecoration(
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
         body:Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/2.jpg"),
+                  image: AssetImage("assets/images/3.jpg"),
                   fit: BoxFit.cover),),
             child:Center(
                 child: Column(
@@ -57,12 +57,12 @@ class HomeScreen extends StatelessWidget {
                       },
                       child: const Text('Новости'),
                     ),
-                    const SizedBox(height: 30),
+                   /* const SizedBox(height: 30),
                     ElevatedButton(
                       style: style,
                       onPressed: null,
                       child: const Text('Мир'),
-                    ),
+                    ),*/
                   ],
                 ))
         ));
